@@ -109,7 +109,7 @@ class DefaultProfile implements IClientProfile
 	private static function addEndpoint_($endpointName,$regionId, $product, $domain)
 	{
 		$regionIds = array($regionId);
-		$productsDomains = array(new ProductDomain($product, $domain));
+		$productDomains = array(new ProductDomain($product, $domain));
 		$endpoint = new Endpoint($endpointName, $regionIds, $productDomains);
 		array_push(self::$endpoints, $endpoint);
 	}
