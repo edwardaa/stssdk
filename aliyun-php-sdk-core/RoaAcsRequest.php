@@ -22,7 +22,7 @@ abstract class RoaAcsRequest extends AcsRequest
 	protected $uriPattern;
 	private $pathParameters = array();
 	private $domainParameters = array();
-	private $dateTimeFormat ="D, d M Y H:i:s \G\M\T";
+	private $dateTimeFormat ='D, d M Y H:i:s \G\M\T';
 	private static $headerSeparator = "\n";
 	private static $querySeprator = "&"; 
 	
@@ -79,8 +79,7 @@ abstract class RoaAcsRequest extends AcsRequest
 	
 	private function prepareHeader($iSigner)
 	{
-		date_default_timezone_set("GMT");
-		$this->headers["Date"] = date($this->dateTimeFormat);
+		$this->headers["Date"] = gmdate($this->dateTimeFormat);
 		if(null == $this->acceptFormat)
 		{
 			$this->acceptFormat = "RAW";
@@ -158,7 +157,7 @@ abstract class RoaAcsRequest extends AcsRequest
 			{
 				$queryString = $queryString."=".$sortMapValue;
 			}
-			$queryString = $queryString.$querySeprator;
+			$queryString = $queryString.self::$querySeprator;
 		}
 		if(null==count($sortMap))
 		{

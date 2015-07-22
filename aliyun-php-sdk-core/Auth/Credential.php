@@ -30,7 +30,7 @@ class Credential
 	{
 	    $this->accessKeyId = $accessKeyId;
 	    $this->accessSecret = $accessSecret;
-	    $this->refreshDate = date($this->dateTimeFormat);
+	    $this->refreshDate = gmdate($this->dateTimeFormat);
 	}
 	
 	public function isExpired()
@@ -39,7 +39,7 @@ class Credential
 		{
 			return false;
 		}
-		if(strtotime($this->expiredDate)>date($this->dateTimeFormat))
+		if(strtotime($this->expiredDate)>time())
 		{
 			return false;
 		}
@@ -60,7 +60,7 @@ class Credential
 	{
 		if($expiredHours>0)
 		{
-			return $this->expiredDate = date($this->dateTimeFormat, strtotime("+".$expiredHours." hour"));
+			return $this->expiredDate = gmdate($this->dateTimeFormat, strtotime("+".$expiredHours." hour"));
 		}
 	}
 	
